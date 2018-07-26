@@ -27,6 +27,14 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://dec0mpiled:welcometor4ge@ds018268.mlab.com:18268/summerbashnew', { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("SUCCESS: Connected to SummerBash!");
+});
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
